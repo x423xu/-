@@ -1,8 +1,6 @@
 # partly-zoom-out
 ## How to use
-1. specify image path at 
-
-  `path = './imgs'`
+1. specify image path at `path = './imgs'`
 
 2. change default setup:
  
