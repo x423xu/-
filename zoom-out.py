@@ -82,7 +82,7 @@ class ZoomOut():
 
     def _get_scaled_image(self,image, G_RECT):
         roi_image = image[G_RECT[1]:G_RECT[1] + G_RECT[3], G_RECT[0]:G_RECT[0] + G_RECT[2]]  # 提取选择的区域
-        if roi_image.shape[1]*SCALE < image.shape[1] and roi_image.shape[0]*SCALE < image.shape[0]:
+        if roi_image.shape[1]*SCALE < image.shape[1] and roi_image.shape[0]*SCALE < image.shape[0]: #判断放大后的ROI尺寸是否超过当前图尺寸
             scaled_shape = (roi_image.shape[1]*SCALE, roi_image.shape[0]*SCALE)
             scaled_image = cv2.resize(roi_image, scaled_shape,
                                             interpolation=INTER_METHOD)# 对选择的区域放大
@@ -90,7 +90,7 @@ class ZoomOut():
             add_borders_image = cv2.copyMakeBorder(scaled_image, BBOX_WIDTH, BBOX_WIDTH,
                                                 BBOX_WIDTH, BBOX_WIDTH, borderType, value=BBOX_COLOR) # 增加边框
         else:
-            ratio = min(image.shape[1]/roi_image.shape[1], image.shape[0]/roi_image.shape[0])
+            ratio = min(image.shape[1]/roi_image.shape[1], image.shape[0]/roi_image.shape[0]) #最长边不超过原图最长边
             scaled_shape = (int(ratio*roi_image.shape[1]), int(ratio*roi_image.shape[0]))
             add_borders_image = cv2.resize(roi_image, scaled_shape,
                                             interpolation=INTER_METHOD)# 对选择的区域放大
